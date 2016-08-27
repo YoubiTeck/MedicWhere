@@ -1,0 +1,45 @@
+<ion-header-bar class="bar-positive">
+
+	<button class="button icon ion-navicon button-clear"></button>
+
+	<h1 class="title">MedicWhere App</h1>
+
+	<button class="button icon ion-gear-a button-clear"></button>
+
+</ion-header-bar>
+
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+
+    <ion-nav-bar class="bar-stable"></ion-nav-bar>
+
+    <ion-nav-view name="menuContent"> </ion-nav-view>
+
+  </ion-side-menu-content>
+
+</ion-side-menus>
+
+
+
+<ion-tabs class="tabs-icon-top tabs-striped tabs-positive">
+
+  <ion-tab href="#/app/account" icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+    <ion-nav-view name="account-tab"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab href="#/app/search"  icon-on="ion-ios-search-strong" icon-off="ion-ios-search">
+    <ion-nav-view name="search-tab"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab  href="#/app/list" icon-on="ion-ios-list" icon-off="ion-ios-list-outline">
+    <ion-nav-view name="list-tab"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab href="#/app/home" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline">
+  </ion-tab>
+
+</ion-tabs>
