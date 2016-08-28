@@ -78,9 +78,6 @@ angular.module('starter')
                 return $q.when(currentPositionCache);
             }
         };
-<<<<<<< HEAD
-    });
-=======
     })
 /*
 
@@ -192,4 +189,3 @@ angular.module('starter')
       }
     })
     ;
->>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea

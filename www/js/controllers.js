@@ -1,8 +1,5 @@
 angular.module('starter.controllers', [])
 
-<<<<<<< HEAD
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
-=======
 .controller('AppCtrl', function($scope, $rootScope, $state) {
   
   // #SIMPLIFIED-IMPLEMENTATION:
@@ -24,7 +21,6 @@ angular.module('starter.controllers', [])
       };
 
     })
->>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
 
 .controller('MapSearchCntr', function($scope, $ionicModal,$ionicActionSheet, $timeout, $http, $log,$state, $location, $ionicPopup, $compile,geolocationService,geofenceService,$ionicLoading) {
 
@@ -168,18 +164,12 @@ angular.module('starter.controllers', [])
 	 //***********************End**********************************///
 })
 
-<<<<<<< HEAD
-
-  .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
-
-=======
   .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
 
 		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
 			 $scope.names = response.data.records;
 			});
 */
->>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
     $http.get('js/data.json').success( function(data){
 
       $scope.artists = data.artists;
@@ -213,9 +203,6 @@ angular.module('starter.controllers', [])
 
     });//end success
 
-<<<<<<< HEAD
-  }]);
-=======
   }])
 	.controller('loginCtrl', function ($scope, $state, $rootScope,BackendService) { /**/
 
@@ -244,4 +231,3 @@ angular.module('starter.controllers', [])
 
 })
 	;
->>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
