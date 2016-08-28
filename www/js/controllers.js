@@ -1,6 +1,30 @@
 angular.module('starter.controllers', [])
 
+<<<<<<< HEAD
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
+=======
+.controller('AppCtrl', function($scope, $rootScope, $state) {
+  
+  // #SIMPLIFIED-IMPLEMENTATION:
+  // Simplified handling and logout function.
+  // A real app would delegate a service for organizing session data
+  // and auth stuff in a better way.
+	$scope.pageFlow = {
+   							disableOtherTabs : true
+						}
+						
+  $scope.isExpanded = false;
+  $scope.logout = function(){
+		$scope.pageFlow.disableOtherTabs = true;
+    $rootScope.user = {};
+    $state.go('app.start')
+  };
+      $scope.setExpanded = function(bool) {
+        $scope.isExpanded = bool;
+      };
+
+    })
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
 
 .controller('MapSearchCntr', function($scope, $ionicModal,$ionicActionSheet, $timeout, $http, $log,$state, $location, $ionicPopup, $compile,geolocationService,geofenceService,$ionicLoading) {
 
@@ -144,9 +168,18 @@ angular.module('starter.controllers', [])
 	 //***********************End**********************************///
 })
 
+<<<<<<< HEAD
 
   .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
 
+=======
+  .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
+
+		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
+			 $scope.names = response.data.records;
+			});
+*/
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
     $http.get('js/data.json').success( function(data){
 
       $scope.artists = data.artists;
@@ -180,4 +213,35 @@ angular.module('starter.controllers', [])
 
     });//end success
 
+<<<<<<< HEAD
   }]);
+=======
+  }])
+	.controller('loginCtrl', function ($scope, $state, $rootScope,BackendService) { /**/
+
+  // #SIMPLIFIED-IMPLEMENTATION:
+  // This login function is just an example.
+  // A real one should call a service that checks the auth against some
+  // web service
+        $scope.login = function(){
+            //in this case we just set the user in $rootScope
+            //$rootScope.name;
+						
+						$scope.pageFlow.disableOtherTabs = false;
+                $rootScope.user = {
+                    email : "k_fahloune@esi.dz",
+                    name : "Katia Fahloune",
+                    address : "Route nationale 26 Sonatrach",
+                    city : "Bejaia",
+                    zip  : "06OO1",
+                    avatar : 'sampledata/images/avatar.jpg'
+                };
+                //finally, we route our app to the 'app.shop'
+                $state.go('app.home');
+
+
+        };
+
+})
+	;
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea

@@ -1,5 +1,12 @@
 // Ionic Starter App
 
+<<<<<<< HEAD
+=======
+
+// salah eddine  aissa khalil 
+
+
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -38,12 +45,44 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
     .state('app.home', {
       url: '/home',
       views: {
+<<<<<<< HEAD
         'menuContent': {
+=======
+        'menuContent2': {
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
           templateUrl: 'templates/home.html',
           controller: 'MapSearchCntr'
         }
       }
     })
+<<<<<<< HEAD
+=======
+     .state('app.start', {
+    url: '/start',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/start.html'
+      }
+    }
+  })
+    .state('app.forgot', {
+    url: '/forgot',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/forgot.html'
+      }
+    }
+  })
+    .state('app.login', {
+        url: '/login',
+        views: {
+          'menuContent2': {
+            templateUrl: 'templates/login.html',
+            controller : 'loginCtrl'
+          }
+        }
+      })
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
     .state('app.list',{
       url: '/list',
       views: {
@@ -73,6 +112,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
         }
       }
     })
+<<<<<<< HEAD
+=======
+    .state('app.signeup',{
+      url:'/signeup',
+      views:{
+        'menuContent2':{
+          templateUrl:'templates/signeup.html',
+          controller: 'loginCtrl'
+        }
+      }
+    })
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
     .state('app.detail',{
       url: '/list/:aId',
       views: {
@@ -84,5 +135,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
     });
 
   // if none of the above states are matched, use this as the fallback
+<<<<<<< HEAD
   $urlRouterProvider.otherwise('/app/home');
+=======
+  $urlRouterProvider.otherwise('/app/start');
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <ion-header-bar class="bar-positive">
 
@@ -10,6 +11,19 @@
 </ion-header-bar>
 
 <ion-side-menus enable-menu-with-back-views="false">
+=======
+<ion-header-bar class="bar-positive">
+
+	<button class="button icon ion-power button-clear" ng-click="logout()" menu-close ></button>
+
+	<h1 class="title">MedicWhere App</h1>
+
+	<button class="button icon ion-gear-a button-clear" ui-sref=""></button>
+
+</ion-header-bar>
+
+<!--<ion-side-menus enable-menu-with-back-views="false">
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
 
   <ion-side-menu-content>
 
@@ -20,6 +34,7 @@
   </ion-side-menu-content>
 
 </ion-side-menus>
+<<<<<<< HEAD
 
 
 
@@ -41,6 +56,26 @@
 
 
   <ion-tab href="#/app/home" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline">
+=======
+-->
+
+<ion-tabs class="tabs-icon-top tabs-striped tabs-positive">
+  
+  <ion-tab href="#/app/account" disabled="pageFlow.disableOtherTabs" icon-on="ion-ios-person" icon-off="ion-ios-person-outline">
+    <ion-nav-view name="account-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab href="#/app/search" disabled="pageFlow.disableOtherTabs" icon-on="ion-ios-search-strong" icon-off="ion-ios-search">
+    <ion-nav-view name="search-tab"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab  href="#/app/list" disabled="pageFlow.disableOtherTabs" icon-on="ion-ios-list" icon-off="ion-ios-list-outline">
+    <ion-nav-view name="list-tab"></ion-nav-view>
+  </ion-tab>
+
+<ion-tab href="#/app/start" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline">
+    <ion-nav-view name="menuContent2"></ion-nav-view>  
+>>>>>>> ac5e5f5f437ffee474a96e062412e13b9b2508ea
   </ion-tab>
 
 </ion-tabs>
