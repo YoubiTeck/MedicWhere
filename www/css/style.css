@@ -1,41 +1,9 @@
 /* Empty. Add your own CSS if you like */
-.star>.item-content{
-	background-color: #EEE8D6 !important;
+#map {
+  width: 100%;
+  height: 100%;
 }
 
-.splash{
-	background: url(../img/background1.png) no-repeat center center fixed;
-
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+.scroll {
+  height: 100%;
 }
-/*
-.mySubHeader{
-	width: 100%;
-}
-.mySubHeader>div{
-	width: 100%;
-	clear: both;
-	display: block;
-}
-
-*/
-.search_header{
-	width: 100%;
-}
-
-.search_header>div{
-	display: inline-block;
-}
-.search_header_label{
-	float: left;
-}
-.search_header_distance{
-	float: right;
-}
-.range_header{
-/*	margin-top: 50px;
-	position: fixed;
-*/}
