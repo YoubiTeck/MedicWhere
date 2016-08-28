@@ -8,7 +8,7 @@
   <!-- in our custom header bar we give a link to start screen -->
   <ion-header-bar class="bar bar-deepblue bar-deepblue-borderbottom">
     <button ui-sref="app.start" class="button button-clear button-deepblue-white"><i class="white-color ion-arrow-left-c"></i></button>
-    <h2 class="text-center title">Authentification</h2>
+    <h2 class="text-center title">Signe Up</h2>
   </ion-header-bar>
 
 
@@ -30,20 +30,41 @@
 
         <div class="col col-center">
           <div class="col col-center padding">
-             <div class="list" ng-app="starter" ng-controller="loginCtrl">
-
+             <div class="list">
 
               <label class="item item-input  ">
-                <input type="text" ng-model="username" placeholder="{{ x.nom }}">
+                <input type="text" ng-model="nom" placeholder="nom">
               </label>
 
+              <label class="item item-input  ">
+                <input type="text" ng-model="prenom" placeholder="prenom">
+              </label>
+</div><div class="list">
+              <label class="item item-input  ">
+                <input type="text" ng-model="username" placeholder="user name">
+              </label>
+              
+              <label class="item item-input  ">
+                <input type="text" ng-model="mail" placeholder="adresse mail">
+              </label>
+</div><div class="list">              
+              <label class="item item-input  ">
+                <input type="text" ng-model="gender" placeholder="gender">
+              </label>
+              
+              <label class="item item-input  ">
+                <input type="text" ng-model="age" placeholder="age">
+              </label>
+</div><div class="list">
               <label class="item item-input ">
                 <input type="password" ng-model="password" placeholder="mot de passe">
               </label>
 
-
-                </div>
-              <button class=" button button-block bar bar-deepblue" ng-click="login()"> <h4 class=" title sans-pro-light">OK</h4> </button>
+              <label class="item item-input ">
+                <input type="password" ng-model="cnpassword" placeholder="confirme mot de passe">
+              </label>
+             </div>
+              <button class=" button button-block bar bar-deepblue" ng-click="signeup()"> <h4 class=" title sans-pro-light">OK</h4> </button>
           </div>
         </div>
 
@@ -55,9 +76,9 @@
 
   </ion-content>
 
-  <!-- we put the forgot password link in the footer -->
+  <!-- we put the forgot password link in the footer 
   <ion-footer-bar class="bar bar-deepblue bar-deepblue-bordertop pointer" ui-sref="app.forgot">
     <h1 class="title sans-pro-light">  Mot de passe oublié?</h1>
   </ion-footer-bar>
-
+-->
 </ion-view>

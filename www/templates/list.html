@@ -54,7 +54,9 @@
 
             </div>            
             <!-- la liste -->
-            <ion-list show-reorder="data.showReorder" show-delete="data.showDeleted">
+          <ion-list show-reorder="data.showReorder" show-delete="data.showDeleted">
+
+        
 
                 <ion-item ng-class="'star' : item.star" ng-repeat='item in artists | filter: query' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{ item.shortname }}">
                 

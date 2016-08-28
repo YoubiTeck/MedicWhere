@@ -102,6 +102,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
         }
       }
     })
+    .state('app.signeup',{
+      url:'/signeup',
+      views:{
+        'menuContent2':{
+          templateUrl:'templates/signeup.html',
+          controller: 'loginCtrl'
+        }
+      }
+    })
     .state('app.detail',{
       url: '/list/:aId',
       views: {

@@ -9,6 +9,7 @@ angular.module('starter.controllers', [])
 	$scope.pageFlow = {
    							disableOtherTabs : true
 						}
+						
   $scope.isExpanded = false;
   $scope.logout = function(){
 		$scope.pageFlow.disableOtherTabs = true;
@@ -163,9 +164,12 @@ angular.module('starter.controllers', [])
 	 //***********************End**********************************///
 })
 
-
   .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
 
+		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
+			 $scope.names = response.data.records;
+			});
+*/
     $http.get('js/data.json').success( function(data){
 
       $scope.artists = data.artists;
@@ -209,6 +213,7 @@ angular.module('starter.controllers', [])
         $scope.login = function(){
             //in this case we just set the user in $rootScope
             //$rootScope.name;
+						
 						$scope.pageFlow.disableOtherTabs = false;
                 $rootScope.user = {
                     email : "k_fahloune@esi.dz",
