@@ -42,12 +42,37 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
     .state('app.home', {
       url: '/home',
       views: {
-        'menuContent': {
+        'menuContent2': {
           templateUrl: 'templates/home.html',
           controller: 'MapSearchCntr'
         }
       }
     })
+     .state('app.start', {
+    url: '/start',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/start.html'
+      }
+    }
+  })
+    .state('app.forgot', {
+    url: '/forgot',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/forgot.html'
+      }
+    }
+  })
+    .state('app.login', {
+        url: '/login',
+        views: {
+          'menuContent2': {
+            templateUrl: 'templates/login.html',
+            controller : 'loginCtrl'
+          }
+        }
+      })
     .state('app.list',{
       url: '/list',
       views: {
@@ -88,5 +113,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/start');
 });
