@@ -36,7 +36,7 @@
     </label>
     <label class="item item-input">
       <span class="input-label">Address</span>
-      <label type="text" ng-model="accountUser.address" name="address" ng-readonly="readonly" required>ouargla</label>
+      <input type="text" ng-model="accountUser.address" name="address" ng-readonly="readonly" required>
     </label>
     <label class="item item-input">
       <span class="input-label">City</span>
@@ -46,7 +46,12 @@
       <span class="input-label">ZIP</span>
       <input type="text" ng-model="accountUser.zip" name="zip code" ng-readonly="readonly" required>
     </label>
-    
+
+    <!-- this leverages angular form directive to show up in case of errors-->
+    <div class="item assertive item-text-wrap text-center" ng-if="accountForm.$invalid">
+      Veuillez remplir tous les champs
+    </div>
+
   </ion-content>
 
   <!-- footer bar -->
@@ -54,8 +59,7 @@
       #IMPLEMENTATION-DETAIL:
       we switch footer bar when editing form data
     -->
-  <!--________________________
-      <ion-footer-bar class="bar bar-deepblue-reverse bar-deepblue-bordertop" ng-click="startEdit()" ng-if="readonly">
+    <ion-footer-bar class="bar bar-deepblue-reverse bar-deepblue-bordertop" ng-click="startEdit()" ng-if="readonly">
       <h2 class="title">Modifier infos</h2>
 
       <button ng-show="!readonly" class="button button-assertive" ng-click="saveEdit()" ng-disabled="accountForm.$invalid">Sauvegarder</button>
@@ -64,17 +68,13 @@
     <ion-footer-bar class="bar bar-deepblue-reverse bar-deepblue-bordertop" ng-if="!readonly">
       <button ng-if="!readonly" class="button button-positive" ng-click="cancelEdit()">Annuler</button>
       <h2 class="title"> </h2>
-      _______________________-->
-
-
       <!--
         #IMPLEMENTATION-DETAIL:
         ng-disable disable the button in case of invalid form, leveraging form validation
-     ____________________________
-     
+      -->
       <button ng-show="!readonly" class="button button-energized" ng-click="saveEdit()" ng-disabled="accountForm.$invalid">Save changes</button>
     </ion-footer-bar>
-   -->
+  
   </form>
 
 </ion-view>

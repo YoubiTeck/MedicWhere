@@ -9,6 +9,15 @@ angular.module('starter.controllers', [])
 	$scope.pageFlow = {
    							disableOtherTabs : true
 						}
+            
+						 $rootScope.user = {
+                    email : "ds_boukhetta@esi.dz",
+                    name : "salah edddine Boukhetta",
+                    address : "ouargla",
+                    city : "ouargla",
+                    zip  : "30000",
+                    avatar : 'img/Barot_Bellingham_tn.jpg'
+                };
 						
   $scope.isExpanded = false;
   $scope.logout = function(){
@@ -164,6 +173,38 @@ angular.module('starter.controllers', [])
 	 //***********************End**********************************///
 })
 
+// This controller is bound to the "app.account" view
+.controller('AccountCtrl', function($scope, $rootScope) {
+  
+  //readonly property is used to control editability of account form
+  $scope.readonly = true;
+
+  // #SIMPLIFIED-IMPLEMENTATION:
+  // We act on a copy of the root user
+  $scope.accountUser = angular.copy($rootScope.user);
+  var userCopy = {};
+
+  $scope.startEdit = function(){
+    // $scope.readonly = false;
+    userCopy = angular.copy($scope.user);
+  };
+
+  $scope.cancelEdit = function(){
+    $scope.readonly = true;
+    $scope.user = userCopy;
+  };
+  
+  // #SIMPLIFIED-IMPLEMENTATION:
+  // this function should call a service to update and save 
+  // the data of current user.
+  // In this case we'll just set form to readonly and copy data back to $rootScope.
+    $scope.saveEdit = function(){
+    $scope.readonly = true;
+    $rootScope.user = $scope.accountUser;
+  };
+
+})
+
   .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
 
 		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
@@ -215,13 +256,13 @@ angular.module('starter.controllers', [])
             //$rootScope.name;
 						
 						$scope.pageFlow.disableOtherTabs = false;
-                $rootScope.user = {
-                    email : "k_fahloune@esi.dz",
-                    name : "Katia Fahloune",
-                    address : "Route nationale 26 Sonatrach",
-                    city : "Bejaia",
-                    zip  : "06OO1",
-                    avatar : 'sampledata/images/avatar.jpg'
+              $rootScope.user = {
+                    email : "ds_boukhetta@esi.dz",
+                    name : "salah edddine Boukhetta",
+                    address : "ouargla",
+                    city : "ouargla",
+                    zip  : "30000",
+                    avatar : 'img/Barot_Bellingham_tn.jpg'
                 };
                 //finally, we route our app to the 'app.shop'
                 $state.go('app.home');
