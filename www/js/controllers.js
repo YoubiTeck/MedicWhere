@@ -192,8 +192,7 @@ angular.module('starter.controllers', [])
       $scope.data = {};
       rangeMaxInit = $scope.rangeMaxInit;
       $ionicPopup.show({
-/*        template:'<input type="username">',
-*/
+/*        template:'<input type="username">',*/
 
         title: '<b>غير مسافة البحث</b>',
         subTitle: 'المسافة القصوى : 50 كم',
@@ -207,11 +206,16 @@ angular.module('starter.controllers', [])
               // add your action
               if($scope.rangeMaxInit>10) {
                 $scope.rangeMaxInit -=10;
+                if($scope.search_head_distance > $scope.rangeMaxInit )
+                {
+                  $scope.search_head_distance = $scope.rangeMaxInit;
+                }
                 // $scope.drag; 
 
               }
             }
-          },          {
+          },
+          {
             text: '<b>'+rangeMaxInit+'</b>',
             type:'button-positive',
             onTap: function(e){
@@ -235,7 +239,7 @@ angular.module('starter.controllers', [])
 
     }
 
-
+/* //not usefull now
       $scope.doRefreshser = function(){
         $http.get('js/data.json').success( function(data){
           $scope.artists = data.artists;
@@ -244,8 +248,8 @@ angular.module('starter.controllers', [])
         });
       }
 
-      $scope.toggleStar = function(item){
-        item.star =! item.star;
+      $scope.goToLocation = function(item){
+        // item.star =! item.star;
       }
 
       $scope.deleteItem = function(item){
@@ -260,7 +264,7 @@ angular.module('starter.controllers', [])
         // copy this item in the newest position without deleting other items
 
       };
-
+*/
     });//end success
 
   }])
