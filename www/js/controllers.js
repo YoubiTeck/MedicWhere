@@ -9,15 +9,6 @@ angular.module('starter.controllers', [])
 	$scope.pageFlow = {
    							disableOtherTabs : true
 						}
-            
-						 $rootScope.user = {
-                    email : "ds_boukhetta@esi.dz",
-                    name : "salah edddine Boukhetta",
-                    address : "ouargla",
-                    city : "ouargla",
-                    zip  : "30000",
-                    avatar : 'img/Barot_Bellingham_tn.jpg'
-                };
 						
   $scope.isExpanded = false;
   $scope.logout = function(){
@@ -30,6 +21,7 @@ angular.module('starter.controllers', [])
       };
 
     })
+
 
 .controller('MapSearchCntr', function($scope, $ionicModal,$ionicActionSheet, $timeout, $http, $log,$state, $location, $ionicPopup, $compile,geolocationService,geofenceService,$ionicLoading) {
 
@@ -173,50 +165,81 @@ angular.module('starter.controllers', [])
 	 //***********************End**********************************///
 })
 
-// This controller is bound to the "app.account" view
-.controller('AccountCtrl', function($scope, $rootScope) {
-  
-  //readonly property is used to control editability of account form
-  $scope.readonly = true;
-
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // We act on a copy of the root user
-  $scope.accountUser = angular.copy($rootScope.user);
-  var userCopy = {};
-
-  $scope.startEdit = function(){
-    // $scope.readonly = false;
-    userCopy = angular.copy($scope.user);
-  };
-
-  $scope.cancelEdit = function(){
-    $scope.readonly = true;
-    $scope.user = userCopy;
-  };
-  
-  // #SIMPLIFIED-IMPLEMENTATION:
-  // this function should call a service to update and save 
-  // the data of current user.
-  // In this case we'll just set form to readonly and copy data back to $rootScope.
-    $scope.saveEdit = function(){
-    $scope.readonly = true;
-    $rootScope.user = $scope.accountUser;
-  };
-
-})
-
-  .controller('ListController',['$scope','$http','$state',function($scope,$http,$state){
-
+.controller('ListController',['$scope','$http','$state','$ionicPopup',function($scope,$http,$state,$ionicPopup){
 		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
 			 $scope.names = response.data.records;
-			});
-*/
-    $http.get('js/data.json').success( function(data){
+			});*/
+   
+	  $http.get('js/data.json').success( function(data){
 
       $scope.artists = data.artists;
 
       $scope.wichartist = $state.params.aId;
 
+		//function that get the value from the range in list.html
+		$scope.drag = function(value){
+      $scope.search_head_distance = value;
+      //  alert("value: "+$scope.rangeValue);
+    };
+
+    $scope.rangeValue = 1;
+    $scope.search_head_distance = $scope.rangeValue; //the label value 
+    $scope.rangeMinInit = 1;//minimum value of range default
+    $scope.rangeMaxInit = 10;//maximum value of range default
+
+		// show popup of maximum value 
+    $scope.showPopup = function(rangeMaxInit){
+      $scope.data = {};
+      rangeMaxInit = $scope.rangeMaxInit;
+      $ionicPopup.show({
+/*        template:'<input type="username">',*/
+
+        title: '<b>غير مسافة البحث</b>',
+        subTitle: 'المسافة القصوى : 50 كم',
+        scope: $scope,
+        
+        buttons: [
+          {
+            text: '<b>-</b>',
+            type:'button-assertive',
+            onTap: function(e){
+              // add your action
+              if($scope.rangeMaxInit>10) {
+                $scope.rangeMaxInit -=10;
+                if($scope.search_head_distance > $scope.rangeMaxInit )
+                {
+                  $scope.search_head_distance = $scope.rangeMaxInit;
+                }
+                // $scope.drag; 
+
+              }
+            }
+          },
+          {
+            text: '<b>'+rangeMaxInit+'</b>',
+            type:'button-positive',
+            onTap: function(e){
+              // add your action
+            }
+          },
+          {
+            text: '<b>+</b>',
+            type:'button-positive',
+            onTap: function(e){
+              // add your action
+              if($scope.rangeMaxInit<50) 
+              {
+                $scope.rangeMaxInit +=10;
+                // $scope.drag; 
+              }
+            }
+          }
+        ]
+      });
+
+    }
+
+/* //not usefull now
       $scope.doRefreshser = function(){
         $http.get('js/data.json').success( function(data){
           $scope.artists = data.artists;
@@ -225,8 +248,8 @@ angular.module('starter.controllers', [])
         });
       }
 
-      $scope.toggleStar = function(item){
-        item.star =! item.star;
+      $scope.goToLocation = function(item){
+        // item.star =! item.star;
       }
 
       $scope.deleteItem = function(item){
@@ -241,11 +264,12 @@ angular.module('starter.controllers', [])
         // copy this item in the newest position without deleting other items
 
       };
-
+*/
     });//end success
 
   }])
-	.controller('loginCtrl', function ($scope, $state, $rootScope,BackendService) { /**/
+
+.controller('loginCtrl', function ($scope, $state, $rootScope,BackendService) { /**/
 
   // #SIMPLIFIED-IMPLEMENTATION:
   // This login function is just an example.
@@ -256,13 +280,13 @@ angular.module('starter.controllers', [])
             //$rootScope.name;
 						
 						$scope.pageFlow.disableOtherTabs = false;
-              $rootScope.user = {
-                    email : "ds_boukhetta@esi.dz",
-                    name : "salah edddine Boukhetta",
-                    address : "ouargla",
-                    city : "ouargla",
-                    zip  : "30000",
-                    avatar : 'img/Barot_Bellingham_tn.jpg'
+                $rootScope.user = {
+                    email : "k_fahloune@esi.dz",
+                    name : "Katia Fahloune",
+                    address : "Route nationale 26 Sonatrach",
+                    city : "Bejaia",
+                    zip  : "06OO1",
+                    avatar : 'sampledata/images/avatar.jpg'
                 };
                 //finally, we route our app to the 'app.shop'
                 $state.go('app.home');
@@ -270,5 +294,4 @@ angular.module('starter.controllers', [])
 
         };
 
-})
-	;
+});

@@ -1,37 +1,17 @@
-      <ion-header-bar class="bar-dark">
-
-        <button class="button button-icon ion-minus-circled" ng-click="data.showDeleted =
-        !data.showDeleted ; data.showReorder = false;"></button>
-
-        <h2 class="title"> Artist List</h2>
-
-        <button class="button button-icon ion-navicon" ng-click="data.showReorder =
-        !data.showReorder ; data.showDeleted = false;"></button>
-
-      </ion-header-bar>   
-
-
         <div class="bar bar-subheader item-input-inset bar-light">
                 <div class="search_header">
                     <div class="search_header_label">Centres médicaux alentour de </div>
-                    <div class="search_header_distance">10 km</div>
+                    <div class="search_header_distance"> {{ search_head_distance }} km</div>
                 </div>            
         </div>      
 
-
-        <ion-content  class="has-subheader">
-
-
-            <!-- refrecher -->
-            <ion-refresher on-refresh="doRefreshser()">
-            </ion-refresher>
-
+        <div class="myAdded">
             <!-- sub header range -->
            <div class="range_header">                
                 <div class = "item range">
-                    <button class="button button-assertive button-small">2</button>
-                    <input type = "range" name = "range1">
-                    <button class="button button-assertive button-small">10</button>                   
+                    <button class="button button-assertive button-small">{{rangeMinInit}}</button>
+                    <input type ="range" min="{{rangeMinInit}}" max="{{rangeMaxInit}}" ng-model="rangeValue" ng-change="drag(rangeValue)" name="range1"> 
+                    <button class="button button-assertive button-small" ng-click="showPopup()">{{rangeMaxInit}}</button>                   
                 </div>                
             </div>
              
@@ -45,14 +25,23 @@
                 </div>
 
                 <select>
+                  <option>Tous</option>
                   <option>Hopitaux</option>
-                  <option selected>Medcin Généraux</option>
+                  <option selected>Medcins Généraux</option>
                   <option>Psychiatre</option>
                   <option>...</option>
                 </select>
               </label>
 
-            </div>            
+            </div>  
+
+        </div>
+        <ion-content  class="has-subheader myContent">
+
+            <!-- refrecher -->
+            <!--<ion-refresher on-refresh="doRefreshser()">
+            </ion-refresher>-->
+
             <!-- la liste -->
           <ion-list show-reorder="data.showReorder" show-delete="data.showDeleted">
 
@@ -67,18 +56,23 @@
                 
                 {{item.bio.length > 100 ? '&hellip;':''}}
                 </p>
-                <button class="button button-clear icon ion-star button-assertive" ng-click="toggleStar(item)" ng-show="item.star">
-                </button>
 
-                <ion-option-button class="button-dark" ng-click="toggleStar(item)">
-                <i class="icon ion-star"></i>
+                <!--<button class="button button-clear icon ion-star button-assertive" ng-click="toggleStar(item)" ng-show="item.star">
+                </button>-->
+
+                <ion-option-button class="button-dark" ng-click="goToLocation(item)">
+                <i class="icon ion-ios-location"></i>
                 </ion-option-button>
 
                 <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
                 </ion-reorder-button>
+               
                 <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)">
                 </ion-delete-button>
                 </ion-item>
+
             </ion-list>
 
+      
         </ion-content>
+ 

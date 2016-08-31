@@ -102,16 +102,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','
         }
       }
     })
-    .state('app.accountuser', {
-        url: '/accountuser',
-        data : { auth : true },
-        views: {
-          'menuContent2': {
-            templateUrl: 'templates/accountuser.html',
-            controller : 'AccountCtrl'
-          }
-        }
-      })
     .state('app.signeup',{
       url:'/signeup',
       views:{

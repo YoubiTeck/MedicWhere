@@ -7,3 +7,25 @@
 .scroll {
   height: 100%;
 }
+
+.search_header{
+	width: 100%;
+}
+
+.search_header>div{
+	display: inline-block;
+}
+.search_header_label{
+	float: left;
+}
+.search_header_distance{
+	float: right;
+}
+
+.myAdded{
+	margin-top:44px;
+
+}
+.myContent{
+	margin-top:104px !important;
+}

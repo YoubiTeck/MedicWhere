@@ -30,11 +30,11 @@
 
         <div class="col col-center">
           <div class="col col-center padding">
-             <div class="list">
+             <div class="list" ng-app="starter" ng-controller="loginCtrl">
 
 
               <label class="item item-input  ">
-                <input type="text" ng-model="username" placeholder="nom">
+                <input type="text" ng-model="username" placeholder="{{ x.nom }}">
               </label>
 
               <label class="item item-input ">
