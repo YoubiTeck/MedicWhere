@@ -3,15 +3,17 @@
 </ion-header-bar>
 
 <ion-view>
-<ion-content>
+  <ion-content class="padding center mySplash">
+
 	<ion-list class="list-inset">
 	<ion-item class="item-text-wrap" ng-repeat="item in artists | filter : { shortname : wichartist}">
-		<img src="img/{{ item.shortname }}_tn.jpg" alt="{{ item.name }}">
+		<img class="circle" src="img/{{ item.shortname }}_tn.jpg" alt="{{ item.name }}">
 		<h2>{{ item.name }}</h2>
 		<h3>{{ item.reknown }}</h3>
 		<p>{{ item.bio }}</p>
 	</ion-item>
 	</ion-list>
+
 </ion-content>
 
 </ion-view>
