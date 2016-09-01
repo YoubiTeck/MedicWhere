@@ -67,7 +67,7 @@ input[type="range"]::-webkit-slider-thumb {
 .mySplash{
 	background-image: url("../img/profile_splash.png") !important;
 	background-size: 100% 100% cover;
-	background-repeat: no-repeat;
+	background-repeat: repeat;
 	/*opacity: 0.6;*/
 }
 .circle {
