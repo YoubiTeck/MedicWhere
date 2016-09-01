@@ -51,7 +51,7 @@
                 <ion-item ng-class="'star' : item.star" ng-repeat='item in artists | filter: query' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{ item.shortname }}">
                 
                 <img ng-src="img/{{ item.shortname }}_tn.jpg" alt="{{ item.name }} Photo">
-                <h2>{{ item.name }} My name</h2>
+                <h2>{{ item.name }}</h2> <div class="item_distance_div"> 1.5 km</div>
                 <h3>{{ item.reknown }}</h3>
                 <p>{{ item.bio |limitTo:150 }}
                 
