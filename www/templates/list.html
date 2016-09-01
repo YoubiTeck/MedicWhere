@@ -1,7 +1,7 @@
 <ion-view hide-nav-bar="true">
         <div class="bar bar-subheader item-input-inset bar-light">
                 <div class="search_header">
-                    <div class="search_header_label">Centres médicaux alentour de </div>
+                    <div class="search_header_label">Centres médicaux alentour de: </div>
                     <div class="search_header_distance"> {{ search_head_distance }} km</div>
                 </div>            
         </div>      
@@ -9,7 +9,7 @@
         <div class="myAdded">
             <!-- sub header range -->
            <div class="range_header">                
-                <div class = "item range">
+                <div class = "item range range-calm">
                     <button class="button button-assertive button-small">{{rangeMinInit}}</button>
                     <input type ="range" min="{{rangeMinInit}}" max="{{rangeMaxInit}}" ng-model="rangeValue" ng-change="drag(rangeValue)" name="range1"> 
                     <button class="button button-assertive button-small" ng-click="showPopup()">{{rangeMaxInit}}</button>                   
@@ -44,6 +44,7 @@
             </ion-refresher>-->
 
             <!-- la liste -->
+            
           <ion-list show-reorder="data.showReorder" show-delete="data.showDeleted">
 
         

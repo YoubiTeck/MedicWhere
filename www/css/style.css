@@ -17,9 +17,15 @@
 }
 .search_header_label{
 	float: left;
+	font-size: 1.4em;
+	font-weight: lighter;
+	color:black;
 }
 .search_header_distance{
 	float: right;
+	font-size: 1.4em;
+	font-weight: lighter;
+	color: black;
 }
 
 .myAdded{
@@ -31,4 +37,30 @@
 }
 .item_distance_div{
 	 float:right;
+}
+.item-thumbnail-left  img{
+	border-radius: 10px;
+}
+.item h3{
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #417D9A;
+}
+.item h2{
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    position: relative;
+    top: -1px;
+    z-index: 1;
+    width: 11px;
+    height: 11px;
+ 
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(50%,#abd3ee), color-stop(51%,#89c3eb), color-stop(100%,#d5ebfb));
 }
