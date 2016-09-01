@@ -64,3 +64,18 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 40px;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebf1f6), color-stop(50%,#abd3ee), color-stop(51%,#89c3eb), color-stop(100%,#d5ebfb));
 }
+.mySplash{
+	background-image: url("../img/profile_splash.png") !important;
+	background-size: 100% 100% cover;
+	background-repeat: no-repeat;
+	/*opacity: 0.6;*/
+}
+.circle {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.center {
+  text-align: center;
+}
