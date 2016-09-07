@@ -79,3 +79,58 @@ input[type="range"]::-webkit-slider-thumb {
 .center {
   text-align: center;
 }
+.item-body h2{
+	margin-top:0 !important;
+}
+.CommentAvatar{
+	margin-top: 2px !important;
+	margin-bottom: 0 !important
+
+}
+.CommentAvatar img{
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+.rating_header>div{
+	display: inline-block;
+	width: 33%;
+	float: left;
+	text-align: center;
+}
+.rating_graph{
+	float: right;
+}
+.rating_total{
+	/*padding-top: 7%;*/
+}
+.rating_total >h1{
+	margin-bottom: 0;
+	font-size: 75px;
+}
+.rating_person_number{
+	padding-top: 45px;
+}
+.rating_graph>p,.rating_person_number>p{
+	margin-bottom: 0;
+}
+.otherComments{
+	margin-top: 1px !important;
+	margin-bottom: 1px !important;
+}
+ul.MyRating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 1px 1px;
+}
+ul.MyRating li i {
+  font-size: 15px;
+}
+/*desing the popup*/
+.myPopup{
+	/*font-family: 'Roboto' !important;*/
+}
+.myPopup input{
+	/*color:red !important;*/
+}

@@ -8,7 +8,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'leaflet-directive','ngCordova','starter.rating','ionic-letter-avatar'])
 
 .run(function($ionicPlatform,$window, $compile, $document, $ionicLoading, $state,$log, $rootScope) {
   $ionicPlatform.ready(function() {
