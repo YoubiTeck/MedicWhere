@@ -2,10 +2,10 @@ ul.rating li {
   display: inline;
   border: 0px;
   background: none;
-  padding: 5px 10px;
+  padding: 1px 1px;
 }
 ul.rating li i {
-  font-size: 30px;
+  font-size: 15px;
 }
 .item-divider ul.rating li i {
   font-size: 30px;
