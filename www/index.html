@@ -51,10 +51,15 @@
             pseudonym = "Salah",
             email = "ds_boukhetta@esi.dz",
             password = "Salouh";
+
         myDB.transaction(function(transaction) {
+
             var executeQuery = "INSERT INTO users (id, pseudonym, email, password) VALUES (?,?,?,?)";
+      
             transaction.executeSql(executeQuery, [id, pseudonym, email, password]);
-        }, errorCB, successCB);
+
+
+        }, successCB , errorCB);
           // Transaction error callback
           //
           function errorCB(transaction, error) {
