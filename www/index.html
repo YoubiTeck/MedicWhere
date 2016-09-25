@@ -36,9 +36,42 @@
     <script src="js/rating.js"></script>
     <!--avatar letter module-->
     <script src="lib/ionic-letteravatar-master/ionic-letteravatar.js"></script>
+
+    <script type="text/javascript">
+    // Wait for device API libraries to load
+    //
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+        var myDB = window.openDatabase("MedicWhere.db","1.0", "MedicWhere", 200000);
+        var id = 1,
+            pseudonym = "Salah",
+            email = "ds_boukhetta@esi.dz",
+            password = "Salouh";
+        myDB.transaction(function(transaction) {
+            var executeQuery = "INSERT INTO users (id, pseudonym, email, password) VALUES (?,?,?,?)";
+            transaction.executeSql(executeQuery, [id, pseudonym, email, password]);
+        }, errorCB, successCB);
+          // Transaction error callback
+          //
+          function errorCB(transaction, error) {
+              alert("Error processing SQL: "+ error);
+          }
+
+          // Transaction success callback
+          //
+          function successCB() {
+              alert("success!");
+          }
+    }
+
+    </script>
   </head>
 
-  <body ng-app="starter">
+  <body ng-app="starter" onload="onDeviceReady()"> 
     <ion-nav-bar class="bar-positive">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>

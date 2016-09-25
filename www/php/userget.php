@@ -1,5 +1,5 @@
 <?php
-     $dbh = new PDO("mysql:host=localhost;dbname=medicwhere;charset=utf8", "root", "");
+     $dbh = new PDO("mysql:host=localhost;dbname=MedicWhere;charset=utf8", "root", "");
      
      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
