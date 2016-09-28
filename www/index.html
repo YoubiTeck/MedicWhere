@@ -45,6 +45,7 @@
     // device APIs are available
     //
     function onDeviceReady() {
+
         var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);
         myDB.transaction(function(tx) {
 
@@ -64,7 +65,7 @@
             
             tx.executeSql("INSERT INTO comments (id, user, doctor, content, datetime) VALUES (?,?,?,?,?)", [1, 1, 1, 'Ce docteur est le meilleur', '2016-09-26 00:00:00']);
             
-            tx.executeSql('SELECT count(*) AS mycount FROM  comments', [], function(tx, rs) {
+            tx.executeSql('SELECT count(*) AS mycount FROM users', [], function(tx, rs) {
                 alert('Record count: ' + rs.rows.item(0).mycount);
             }, function(tx, error) {
                 alert('SELECT error: ' + error.message);
