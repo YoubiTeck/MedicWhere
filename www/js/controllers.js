@@ -1,5 +1,9 @@
 angular.module('starter.controllers', [])
 
+//** _________________________________________________________________________________ **//
+//** ___________________________ App ContRoller ______________________________________ **//
+//** _________________________________________________________________________________ **//
+
 .controller('AppCtrl', function($scope, $rootScope, $state) {
   
   // #SIMPLIFIED-IMPLEMENTATION:
@@ -7,23 +11,26 @@ angular.module('starter.controllers', [])
   // A real app would delegate a service for organizing session data
   // and auth stuff in a better way.
 	$scope.pageFlow = {
-   							disableOtherTabs : true
+   							disableOtherTabs : false
 						}
-						
   $scope.isExpanded = false;
   $scope.logout = function(){
-		$scope.pageFlow.disableOtherTabs = true;
+		$scope.pageFlow.disableOtherTabs = false;
     $rootScope.user = {};
     $state.go('app.start')
   };
-      $scope.setExpanded = function(bool) {
+        $scope.setExpanded = function(bool) {
         $scope.isExpanded = bool;
       };
 
     })
 
+//** _________________________________________________________________________________ **//
+//** ___________________________ MAP search ContRoller _______________________________ **//
+//** _________________________________________________________________________________ **//
 
-.controller('MapSearchCntr', function($scope, $ionicModal,$ionicActionSheet, $timeout, $http, $log,$state, $location, $ionicPopup, $compile,geolocationService,geofenceService,$ionicLoading) {
+
+.controller('MapSearchCntr', function($scope,$rootScope, $ionicModal,$ionicActionSheet, $timeout, $http, $log,$state, $location, $ionicPopup, $compile,geolocationService,geofenceService,$ionicLoading) {
 
 	$scope.latLang={
 		lat:'',
@@ -51,19 +58,20 @@ angular.module('starter.controllers', [])
 
             $log.log('Tracing current location...');
             $ionicLoading.show({
-                template: 'Tracing current location...'
+                template: 'Tracing current location. ..'
             });
             geolocationService.getCurrentPosition()
                 .then(function (position) {
                     $log.log('Current location found');
                     $log.log('Current location Latitude'+position.coords.latitude);
                     $log.log('Current location Longitude'+position.coords.longitude);
-
+                    console.log('lat:'+position.coords.latitude+' __ lang:'+position.coords.longitude);
                     $ionicLoading.hide();
 					$scope.latLang.lat=parseFloat(position.coords.latitude);
 					$scope.latLang.lang=parseFloat(position.coords.longitude);
 					var lat =$scope.latLang.lat;
 					var lang =$scope.latLang.lang;
+          console.log(lat+' '+lang);
 					//You can hit request upto 2500 per day on free of cost.
 					var mrgdata='http://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lang+'&sensor=true'
 					$http.get(mrgdata)
@@ -83,29 +91,38 @@ angular.module('starter.controllers', [])
 							mapOptions);
 
 
-						 var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+						var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
 						var compiled = $compile(contentString)($scope);
 
 						var infowindow = new google.maps.InfoWindow({
-
+                  
 						});
 						infowindow.setContent($scope.latLang.location);
 						infowindow.open(map, marker);
-
-						var marker = new google.maps.Marker({
+            var image = {
+    // Adresse de l'icône personnalisée
+    url: 'img/medecin.png',
+    // Taille de l'icône personnalisée
+    size: new google.maps.Size(35, 40),
+    // Origine de l'image, souvent (0, 0)
+    origin: new google.maps.Point(0,0),
+    // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+    anchor: new google.maps.Point(0, 20)
+};
+ 
+        		var marker = new google.maps.Marker({
 						  position: myLatlng,
 						  map: map,
-						  title: 'Current Location'
+						  title: 'Current Location',
+              icon: image
 						});
-
+                     
 						google.maps.event.addListener(marker, 'click', function() {
 						  infowindow.open(map,marker);
-
 						});
-
+            
+        //    marker.setMap(null);
 						$scope.map = map;
-
-
 				}).error(function (data, status, headers, config) {
 					console.log("error");
 
@@ -125,10 +142,11 @@ angular.module('starter.controllers', [])
 			});
 		});
      };
-
 	 //This is default set location before fetching current location///
 	 //***************Start********************************//
+ //  $scope.GetGeoLocation();
 	 if($scope.latLang.lat==''){
+     
 			var myLatlng = new google.maps.LatLng(18.9750,72.8258);
 
 						var mapOptions = {
@@ -136,6 +154,7 @@ angular.module('starter.controllers', [])
 						  zoom: 16,
 						  mapTypeId: google.maps.MapTypeId.ROADMAP
 						};
+            
 						var map = new google.maps.Map(document.getElementById("map"),
 							mapOptions);
 
@@ -144,31 +163,116 @@ angular.module('starter.controllers', [])
 						var compiled = $compile(contentString)($scope);
 
 						var infowindow = new google.maps.InfoWindow({
-
 						});
+            
 						infowindow.setContent($scope.latLang.location);
 						infowindow.open(map, marker);
 
-						var marker = new google.maps.Marker({
+infowindow.open(map, marker1);
+
+//--> Configuration de l'icône personnalisée
+var image = {
+    // Adresse de l'icône personnalisée
+    url: 'img/medecin.png',
+    // Taille de l'icône personnalisée
+    size: new google.maps.Size(35, 40),
+    // Origine de l'image, souvent (0, 0)
+    origin: new google.maps.Point(0,0),
+    // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+    anchor: new google.maps.Point(0, 20)
+};
+ 
+//--> Insertion du marker avec l'ajout de l'icône
+var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(18.9750,72.8258),
+    map: map,
+    title:"Hello World !",
+    // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
+    icon: image
+});
+/*var marker1 = new google.maps.Marker({
+    position: new google.maps.LatLng(19.9750,72.8258),
+    map: map,
+    title:"Hello World !",
+    // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
+    icon: image
+});*/
+                  $rootScope.latitude = [];
+                  $rootScope.longitude = [];
+
+
+var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);
+       
+        myDB.transaction(function(tx) {
+tx.executeSql('SELECT * From doctors',[], function(tx, rs) {
+                 
+
+                for (var i = rs.rows.length - 1; i >= 0; i--) {
+              
+                  $rootScope.latitude.push( rs.rows.item(i).latitude);
+              
+                  $rootScope.longitude.push( rs.rows.item(i).longitude);
+
+                }
+              console.log("lat: "+ $rootScope.latitude+ "\nlong: "+ $rootScope.longitude) ;   
+             
+            }, function(tx, error) {
+                alert('error: ' + error.message);
+            });
+        });
+
+        for (var i = $scope.longitude.length - 1; i >= 0; i--) {
+          var marker1 = new google.maps.Marker({
+              position: new google.maps.LatLng($scope.latitude[i],$scope.longitude[i]),
+              map: map,
+              title:"Hello World !",
+              // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
+              icon: image
+          });
+          delete marker1;
+        }
+        /*
+
+ var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);
+        myDB.transaction(function(tx) {
+tx.executeSql('INSERT INTO doctors (id, latitude, longitude, address, phone, firstname, lastname, specialty, append) VALUES (?,?,?,?,?,?,?,?,?)', [2, 29.9750,72.8258, 'Bab ezzouar', '0777-777-777','Care','Doctor','ORL',1], function(tx, rs) {
+                
+              console.log('inserted');
+            }, function(tx, error) {
+                alert('error: ' + error.message);
+            });
+        });*/
+
+				/*		var marker = new google.maps.Marker({
 						  position: myLatlng,
 						  map: map,
 						  title: 'Current Location'
-						});
-
+						});*/
+            
 						google.maps.event.addListener(marker, 'click', function() {
 						  infowindow.open(map,marker);
-
 						});
-
+            google.maps.event.addListener(marker1, 'click', function() {
+              infowindow.open(map,marker1);
+            });
 						$scope.map = map;
 	 }
 	 //***********************End**********************************///
 })
 
+//** _________________________________________________________________________________ **//
+//** ___________________________ List ContRoller _____________________________________ **//
+//** _________________________________________________________________________________ **//
+
+
 .controller('ListController',['$scope','$http','$state','$ionicPopup',function($scope,$http,$state,$ionicPopup){
 		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
 			 $scope.names = response.data.records;
 			});*/
+   
+   
+   
+   
    
 	  $http.get('js/data.json').success( function(data){
 
@@ -179,8 +283,8 @@ angular.module('starter.controllers', [])
 		//function that get the value from the range in list.html
 		$scope.drag = function(value){
       $scope.search_head_distance = value;
-      //  alert("value: "+$scope.rangeValue);
-    };
+        alert("value: "+$scope.rangeValue);
+};
     // set the rate and max variables
     $scope.rating = {};
     $scope.rating.rate = 0;
@@ -522,6 +626,10 @@ angular.module('starter.controllers', [])
     });//end success
 
   }])
+  
+//** _________________________________________________________________________________ **//
+//** ___________________________ Login ContRoller ____________________________________ **//
+//** _________________________________________________________________________________ **//
 
 .controller('loginCtrl', function ($scope, $state, $rootScope,BackendService) { /**/
 
@@ -529,21 +637,73 @@ angular.module('starter.controllers', [])
   // This login function is just an example.
   // A real one should call a service that checks the auth against some
   // web service
-        $scope.login = function(){
+            $scope.signeup = function(){
+           
+            $user = document.getElementById("username").value;
+            $mail= document.getElementById("mail").value;
+            $password= document.getElementById("password").value;
+            $nom= document.getElementById("nom").value;
+            $prenom=document.getElementById("prenom").value;
+            $birthday = document.getElementById("birthday").value;
+            var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);  
+            myDB.transaction(function(tx) {
+            tx.executeSql('SELECT count(*) AS mycount FROM users', [], function(tx, rs) {
+            $id = rs.rows.item(0).mycount+1;
+            //alert("nb users"+ $id);
+            tx.executeSql("INSERT INTO users (id, pseudonym, email, password, forename, surname, birthday) VALUES (?,?,?,?,?,?,?)", [$id, $user, $mail, $password, $nom, $prenom, $birthday]);
+            tx.executeSql('SELECT * FROM users where id=(?) ', [$id], function(tx, rs) {
+              if(rs.rows.item(0).pseudonym == $user){
+                alert("user created");
+              }
+            },function(tx,error){
+              alert('SELECT error: ' + error.message);
+            });
+        
+      
+            }, function(tx, error) {
+                alert('SELECT error: ' + error.message);
+            });
+            
+          
+           
+        }); 
+              
+     };
+            $scope.login = function(){
             //in this case we just set the user in $rootScope
             //$rootScope.name;
 						
 						$scope.pageFlow.disableOtherTabs = false;
-                $rootScope.user = {
-                    email : "k_fahloune@esi.dz",
-                    name : "Katia Fahloune",
-                    address : "Route nationale 26 Sonatrach",
-                    city : "Bejaia",
-                    zip  : "06OO1",
-                    avatar : 'sampledata/images/avatar.jpg'
+              
+            $psw=document.getElementById("password").value;
+            $user=document.getElementById("user").value;
+               
+        var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);
+        myDB.transaction(function(tx) {
+            tx.executeSql('SELECT *,count(*) as mycount FROM users where pseudonym=(?) and password=(?) ', [$user,$psw], function(tx, rs) {
+                //alert('pseudonym: ' + rs.rows.item(0).pseudonym);
+                if(rs.rows.item(0).mycount==1){
+                  $rootScope.user = {
+                    pseudonym : $user,
+                    forename : rs.rows.item(0).forename,
+                    surname : rs.rows.item(0).surname,
+                    birthday : rs.rows.item(0).birthday,
+                    email : rs.rows.item(0).email
                 };
+                  $state.go('app.home');
+                }else{
+                  alert("User not found");
+                }
+                //pseudonym, email, password, forename
+            }, function(tx, error) {
+                alert('SELECT error: ' + error.message);
+            });
+        });
+            
+              // alert($psw+$user);
+                
                 //finally, we route our app to the 'app.shop'
-                $state.go('app.home');
+                //$state.go('app.home');
 
 
         };

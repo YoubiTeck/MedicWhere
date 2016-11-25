@@ -26,27 +26,28 @@
       #IMPLEMENTATION-DETAIL:
       ng-readonly is set on each field and bound to $scope.readonly
     -->
+    
+    <label class="item item-input">
+      <span class="input-label">Pseudonym</span>
+      <input type="text" ng-model="user.pseudonym" name="pseudonym" ng-readonly="readonly" required>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Prénom</span>
+      <input type="text" ng-model="user.forename" name="forename" ng-readonly="readonly" required>
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Nom</span>
+      <input type="text" ng-model="user.surname" name="surname" ng-readonly="readonly" required>
+    </label>
     <label class="item item-input">
       <span class="input-label">Email</span>
-      <input type="text" ng-model="accountUser.email" name="email" ng-readonly="readonly" required>
+      <input type="text" ng-model="user.email" name="email" ng-readonly="readonly" required>
     </label>
     <label class="item item-input">
-      <span class="input-label">Name</span>
-      <input type="text" ng-model="accountUser.name" name="name" ng-readonly="readonly" required>
+      <span class="input-label">Birthday</span>
+      <input type="text" ng-model="user.birthday" name="birthday" ng-readonly="readonly" required>
     </label>
-    <label class="item item-input">
-      <span class="input-label">Address</span>
-      <label type="text" ng-model="accountUser.address" name="address" ng-readonly="readonly" required>ouargla</label>
-    </label>
-    <label class="item item-input">
-      <span class="input-label">City</span>
-      <input type="text" ng-model="accountUser.city" name="city" ng-readonly="readonly" required>
-    </label>
-    <label class="item item-input">
-      <span class="input-label">ZIP</span>
-      <input type="text" ng-model="accountUser.zip" name="zip code" ng-readonly="readonly" required>
-    </label>
-    
+ 
   </ion-content>
 
   <!-- footer bar -->
