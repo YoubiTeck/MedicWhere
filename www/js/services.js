@@ -1,4 +1,66 @@
-angular.module('starter')
+angular.module('starter.services',[])
+    .factory('DBA',['$cordovaSQLite','$q','$ionicPlatform',function($cordovaSQLite,$q,$ionicPlatform){
+            var self = this;
+
+            // Handle query's and potential errors
+            self.query = function (query, parameters) {
+                parameters = parameters || [];
+                var q = $q.defer();
+
+                $ionicPlatform.ready(function () {
+                $cordovaSQLite.execute(myDB, query, parameters)
+                    .then(function (result) {
+                    q.resolve(result);
+                    }, function (error) {
+                    console.warn('I found an error');
+                    console.warn(error);
+                    q.reject(error);
+                    });
+                });
+                
+                return q.promise;
+            }
+
+            // Proces a result set
+            self.getAll = function(result) {
+                var output = [];
+
+                for (var i = 0; i < result.rows.length; i++) {
+                output.push(result.rows.item(i));
+                }
+                return output;
+            }
+            // Proces a single result
+            self.getById = function(result) {
+                var output = null;
+                output = angular.copy(result.rows.item(0));
+                return output;
+            }
+        return self;
+    }])
+    .factory('Doctors',['$cordovaSQLite','DBA',function($cordovaSQLite,DBA){
+        var self = this;
+
+        self.allDocs = function() {
+            return DBA.query("SELECT * FROM doctors")
+            .then(function(result){
+                return DBA.getAll(result);
+            });
+        }
+
+        self.getDocById = function(docID){
+            var parameters = [docID];
+            return DBA.query("select * from doctors where id = (?)",parameters)
+            .then(function(result){
+            return DBA.getById(result);   
+            })
+        }
+        self.addDoc = function(doctor){
+            var parameters = [doctor.id,doctor.latitude,doctor.longitude,doctor.address,doctor.phone,doctor.firstname,doctor.lastname,doctor.specialty,doctor.appende,doctor.dit];
+            return DBA.query("insert into doctors values(?,?,?,?,?,?,?,?,?,?)",parameters);
+        }
+        return self;
+    }])
     .factory('geofenceService', function ($rootScope, $window, $q, $log, $ionicLoading) {
 
         var geofenceService = {
