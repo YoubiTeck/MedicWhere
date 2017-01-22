@@ -51,7 +51,7 @@ angular.module('starter.controllers', [])
   });
 
 
-  $scope.GetGeoLocation = function () {
+  $scope.GetGeoLocation = function (data) {
 
             $log.log('Tracing current location...');
             $ionicLoading.show({
@@ -82,7 +82,7 @@ angular.module('starter.controllers', [])
 
                       var mapOptions = {
                         center: myLatlng,
-                        zoom: 16,
+                        zoom: 10,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                       };
                       var map = new google.maps.Map(document.getElementById("map"),
@@ -100,7 +100,7 @@ angular.module('starter.controllers', [])
                       infowindow.open(map, marker);
                       var image = {
                           // Adresse de l'icône personnalisée
-                          url: 'img/medecin.png',
+                          url: 'img/map-marker-me.png',
                           // Taille de l'icône personnalisée
                           size: new google.maps.Size(35, 35),
                           // Origine de l'image, souvent (0, 0)
@@ -120,56 +120,6 @@ angular.module('starter.controllers', [])
                       google.maps.event.addListener(marker, 'click', function() {
                         infowindow.open(map,marker);
                       });
-                      
-                  //    marker.setMap(null);
-                      $scope.map = map;
-                    })//end of success response
-                    .error(function (data, status, headers, config) {
-                      console.log("error");
-
-                      if (status == 0)
-                        showalert("Error", "Errro Occured from Server site!");
-                      else
-                        showalert("Error", data);
-
-                    });
-
-                }, function (reason) {
-                  $log.log('Cannot obtain current location', reason);
-
-                  $ionicLoading.show({
-                    template: 'Cannot obtain current location',
-                    duration: 1500
-                  });
-                 }
-                );
-         };
-	 //This is default set location before fetching current location///
-	 //***************Start********************************//
-
-  $scope.loadGeoLoc = function(data){
-            // alert("data: "+data.length)
-            var myLatlng = new google.maps.LatLng(36.684518319590005, 3.0799829101562137);
-
-						var mapOptions = {
-						  center: myLatlng,
-						  zoom: 16,
-						  mapTypeId: google.maps.MapTypeId.ROADMAP
-						};
-            
-						var map = new google.maps.Map(document.getElementById("map"),mapOptions);
-
-
-						var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-						var compiled = $compile(contentString)($scope);
-
-						var infowindow = new google.maps.InfoWindow({
-						});
-            
-            // to show the information shapes 
-						infowindow.setContent($scope.latLang.location);
-						infowindow.open(map, marker);
-
 
             // Configuration de l'icône personnalisée
             var image = {
@@ -215,16 +165,48 @@ angular.module('starter.controllers', [])
             });
 
           }                                   
+                      
+                  //    marker.setMap(null);
+                      $scope.map = map;
+                    })//end of success response
+                    .error(function (data, status, headers, config) {
+                      console.log("error");
 
-  }
+                      if (status == 0)
+                        showalert("Error", "Errro Occured from Server site!");
+                      else
+                        showalert("Error", data);
+
+                    });
+
+                }, function (reason) {
+                  $log.log('Cannot obtain current location', reason);
+
+                  $ionicLoading.show({
+                    template: 'Cannot obtain current location',
+                    duration: 1500
+                  });
+                 }
+                );
+          
+          
+          
+         };
+	 //This is default set location before fetching current location///
+	 //***************Start********************************//
+
 	if($scope.latLang.lat==''){
      
         Doctors.allDocs().then(function(res){
-            $scope.loadGeoLoc(res);          
+            // $scope.loadGeoLoc(res);
+            $scope.GetGeoLocation(res);          
         },function(error){
           alert("error: "+error);
         });  
+
+        // $scope.GetGeoLocation();
 	}
+  
 	 //***********************End**********************************///
 })
 
