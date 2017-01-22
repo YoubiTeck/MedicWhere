@@ -121,50 +121,40 @@ angular.module('starter.controllers', [])
                         infowindow.open(map,marker);
                       });
 
-            // Configuration de l'icône personnalisée
-            var image = {
-                // Adresse de l'icône personnalisée
-                url: 'img/markerHosp.png',
-                // Taille de l'icône personnalisée
-                size: new google.maps.Size(35, 40),
-                // Origine de l'image, souvent (0, 0)
-                origin: new google.maps.Point(0,0),
-                // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-                anchor: new google.maps.Point(0, 20)
-            };
- 
-            //  Insertion du marker avec l'ajout de l'icône
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(36.684518319590005, 3.0799829101562137),
-                map: map,
-                title:"Hello World !",
-                // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
-                icon: image
-            });
-            var marker=null;
+                      // // Configuration de l'icône personnalisée
+                      var image = {
+                          // Adresse de l'icône personnalisée
+                          url: 'img/markerHosp.png',
+                          // Taille de l'icône personnalisée
+                          size: new google.maps.Size(35, 40),
+                          // Origine de l'image, souvent (0, 0)
+                          origin: new google.maps.Point(0,0),
+                          // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
+                          anchor: new google.maps.Point(0, 20)
+                      };
+          
+                      for (var index = 0; index < data.length; index++) {
+                        console.log(
+                              data[index]['id']
+                        +"\n"+data[index]['latitude']
+                        +"\n"+data[index]['longitude']
+                        +"\n"+data[index]['address']
+                        +"\n"+data[index]['phone']
+                        +"\n"+data[index]['firstname']
+                        +"\n"+data[index]['lastname']
+                        +"\n"+data[index]['specialty']
+                        +"\n"+data[index]['append']
+                        +"\n"+data[index]['edit']
+                        );
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(data[index]['latitude'], data[index]['longitude']),
+                            map: map,
+                            title:"Hello World !",
+                            // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
+                            icon: image
+                        });
 
-          for (var index = 0; index < data.length; index++) {
-             console.log(
-                  data[index]['id']
-             +"\n"+data[index]['latitude']
-             +"\n"+data[index]['longitude']
-             +"\n"+data[index]['address']
-             +"\n"+data[index]['phone']
-             +"\n"+data[index]['firstname']
-             +"\n"+data[index]['lastname']
-             +"\n"+data[index]['specialty']
-             +"\n"+data[index]['append']
-             +"\n"+data[index]['edit']
-            );
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(data[index]['latitude'], data[index]['longitude']),
-                map: map,
-                title:"Hello World !",
-                // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
-                icon: image
-            });
-
-          }                                   
+                      }                                   
                       
                   //    marker.setMap(null);
                       $scope.map = map;
@@ -187,10 +177,7 @@ angular.module('starter.controllers', [])
                     duration: 1500
                   });
                  }
-                );
-          
-          
-          
+                );         
          };
 	 //This is default set location before fetching current location///
 	 //***************Start********************************//
