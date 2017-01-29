@@ -18,20 +18,16 @@
              
             <!-- choix de specialite -->
             <div class="list">
-
+            
               <label class="item item-input item-select">
-                
-                <div class="input-label">
-                  Chercher les : 
-                </div>
+                  <span class="input-label">Chercher :</span>
+                  <input type="text" ng-model="chercher_input">
+                    
+                  <select ng-model="filtrer_spec"
+                        ng-options=" item for item in filtrageList">
+                  </select>
 
-                <select>
-                  <option>Tous</option>
-                  <option>Hopitaux</option>
-                  <option selected>Medcins Généraux</option>
-                  <option>Psychiatre</option>
-                  <option>...</option>
-                </select>
+
               </label>
 
             </div>  
@@ -49,7 +45,7 @@
 
         
 
-                <ion-item ng-class="'star' : item.star" ng-repeat='item in artists | filter: query' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{ item.shortname }}">
+                <ion-item ng-class="'star' : item.star" ng-repeat='item in artists | filter: chercher_input' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{ item.shortname }}">
                 
                 <img ng-src="img/{{ item.shortname }}_tn.jpg" alt="{{ item.name }} Photo">
                 <h2>{{ item.name }}</h2> <div class="item_distance_div"> 1.5 km</div>

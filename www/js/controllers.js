@@ -206,22 +206,30 @@ angular.module('starter.controllers', [])
 		 /*$http.get("http://127.0.0.1/test.php").then(function (response) {
 			 $scope.names = response.data.records;
 			});*/
-   
-   
-   
-   
-   
-	  $http.get('js/data.json').success( function(data){
 
-      $scope.artists = data.artists;
+    $scope.chercher_input ="";
 
-      $scope.wichartist = $state.params.aId;
+
+    $scope.filtrageList = [
+      'Tous',
+      'Hospital',
+      'Medecin Général',
+      'Medecin Spéciliste'
+    ];
+    
+    $http.get('js/data.json').success( function(data){
+
+    $scope.filtrer_spec = 'Tous';
+
+    $scope.artists = data.artists;
+
+    $scope.wichartist = $state.params.aId;
 
 		//function that get the value from the range in list.html
 		$scope.drag = function(value){
       $scope.search_head_distance = value;
-        alert("value: "+$scope.rangeValue);
-};
+        // alert("value: "+$scope.rangeValue);
+    };
     // set the rate and max variables
     $scope.rating = {};
     $scope.rating.rate = 0;
@@ -370,7 +378,6 @@ angular.module('starter.controllers', [])
       };
 
 
-      // alert("ratingValue: "+ratingValue);
     $ionicPopup.show({
       cssClass:"myPopup",
       template:'<input name="titleInput" id="titleInput" type="text" placeholder="Titre"><input name="descripInput" id="descripInput" type="text" placeholder="Description">',
@@ -534,32 +541,6 @@ angular.module('starter.controllers', [])
 
     }
 
-/* //not usefull now
-      $scope.doRefreshser = function(){
-        $http.get('js/data.json').success( function(data){
-          $scope.artists = data.artists;
-          $scope.$broadcast('scroll.refreshComplete');
-
-        });
-      }
-
-      $scope.goToLocation = function(item){
-        // item.star =! item.star;
-      }
-
-      $scope.deleteItem = function(item){
-        $scope.artists.splice( $scope.artists.indexOf(item),1);
-      };
-
-      $scope.moveItem = function(item, fromIndex , toIndex){
-        // alert("from : "+ fromIndex + " to: "+ toIndex)
-        $scope.artists.splice(fromIndex,1);
-        // delete this item from the eldest position
-        $scope.artists.splice(toIndex,0,item);
-        // copy this item in the newest position without deleting other items
-
-      };
-*/
     });//end success
 
   }])

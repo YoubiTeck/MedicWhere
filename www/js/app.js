@@ -8,7 +8,7 @@
 // 'starter.controllers' is found in controllers.js
 
 var myDB = null;
-angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'leaflet-directive','ngCordova','starter.rating','ionic-letter-avatar'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'leaflet-directive','ngCordova','starter.rating','ionic-letter-avatar','firebase'])
 
 .run(function($ionicPlatform,$window, $compile, $document, $ionicLoading, $state,$log, $rootScope,$cordovaSQLite,Doctors) {
   $ionicPlatform.ready(function() {
@@ -46,6 +46,16 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
         });
 })
 .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAp4d8F25uJujn_WWPLS2tewOTVuN60FGc",
+    authDomain: "medicwhere-81309.firebaseapp.com",
+    databaseURL: "https://medicwhere-81309.firebaseio.com",
+    storageBucket: "medicwhere-81309.appspot.com",
+    messagingSenderId: "491926403826"
+  };
+  firebase.initializeApp(config);
 
   $stateProvider
     .state('app', {
@@ -93,7 +103,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
       views: {
         'list-tab' : {
           templateUrl: 'templates/list.html',
-          controller: 'ListController'
+          controller: 'ListController as ctrl'
         }
       }
     })
