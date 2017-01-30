@@ -1,0 +1,44 @@
+    <script type="text/javascript">
+    // Wait for device API libraries to load
+    //
+//    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device are available
+    //
+/*    function onDeviceReady() {
+
+        // var myDB = window.openDatabase("MedicWhere","1.0", "MedicWhere", 200000);
+
+        myDB.transaction(function(tx) {
+
+            //creation tables
+            tx.executeSql("CREATE TABLE IF NOT EXISTS users (id int(11) NOT NULL PRIMARY KEY,pseudonym varchar(32) NOT NULL,email varchar(255) NOT NULL, password varchar(512) NOT NULL, forename varchar(255) DEFAULT NULL, surname varchar(255) DEFAULT NULL, gender char(1) DEFAULT 'M', birthday date DEFAULT NULL, active tinyint(1) DEFAULT '1')");
+            
+            tx.executeSql("CREATE TABLE IF NOT EXISTS doctors (id int(11) NOT NULL PRIMARY KEY, latitude float NOT NULL, longitude float NOT NULL, address varchar(255) NOT NULL, phone varchar(255) DEFAULT NULL, firstname varchar(255) DEFAULT NULL, lastname varchar(255) NOT NULL, specialty varchar(255) NOT NULL, append int(11) NOT NULL, edit int(11) DEFAULT NULL)");
+
+            tx.executeSql("CREATE TABLE IF NOT EXISTS hospitals (id int(11) NOT NULL PRIMARY KEY, latitude float NOT NULL, longitude float NOT NULL, address varchar(255) NOT NULL, phone varchar(255) DEFAULT NULL, name varchar(255) NOT NULL, specialization varchar(255) NOT NULL)");
+            
+            tx.executeSql("CREATE TABLE IF NOT EXISTS comments (id int(11) NOT NULL PRIMARY KEY, user int(11) NOT NULL, doctor int(11) DEFAULT NULL, hospital int(11) DEFAULT NULL, content text NOT NULL, status tinyint(1) DEFAULT '1', datetime datetime NOT NULL,report int(6) DEFAULT '0')");
+
+            //insert values
+            tx.executeSql("INSERT INTO users (id, pseudonym, email, password, forename, surname, birthday) VALUES (?,?,?,?,?,?,?)", [1, 'Salouh', 'ds_boukhetta@esi.dz', 'SalahB', 'Salah', 'Boukhetta', '2016-09-26']);
+            
+            tx.executeSql("INSERT INTO doctors (id, latitude, longitude, address, phone, firstname, lastname, specialty, append) VALUES (?,?,?,?,?,?,?,?,?)",[1, 51.52241608253253, 0.1318359375, 'Bab ezzouar', '0777-777-777','Care','Doctor','ORL',1]);
+            
+            tx.executeSql("INSERT INTO hospitals (id, latitude, longitude, address, phone, name, specialization) VALUES (?,?,?,?,?,?,?)",[1, 31.52241608253253, 14.1318359375, 'Bab ezzouar', '0555-555-555','Hôpital','Général']);
+            
+            tx.executeSql("INSERT INTO comments (id, user, doctor, content, datetime) VALUES (?,?,?,?,?)",[1, 1, 1, 'Ce docteur est le meilleur', '2016-09-26 00:00:00']);
+            
+            tx.executeSql("INSERT INTO comments (id, user, doctor, content, datetime) VALUES (?,?,?,?,?)",[2, 1, 1, 'Ce docteur est le meilleur', '2016-09-26 00:00:00']);
+
+            tx.executeSql('SELECT count(*) AS mycount FROM doctors', [], function(tx, rs) {
+                alert('Record count: ' + rs.rows.item(0).mycount);
+            }, function(tx, error) {
+                alert('SELECT error: ' + error.message);
+            });
+          
+        });
+  
+  }*/ 
+//khalil test commit as lazy person
+    </script>

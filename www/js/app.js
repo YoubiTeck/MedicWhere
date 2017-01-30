@@ -45,7 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
             $log.log('stateChangeError ', error, toState, toParams, fromState, fromParams);
         });
 })
-.config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider','$firebaseRefProvider',
+  function($stateProvider, $urlRouterProvider, $firebaseRefProvider) {
 
   // Initialize Firebase
   var config = {
@@ -56,6 +57,12 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
     messagingSenderId: "491926403826"
   };
   firebase.initializeApp(config);
+
+  // config my references
+  $firebaseRefProvider.registerUrl({
+    default: config.databaseURL,
+    doctors: config.databaseURL + '/doctors'
+  });
 
   $stateProvider
     .state('app', {
@@ -103,7 +110,12 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
       views: {
         'list-tab' : {
           templateUrl: 'templates/list.html',
-          controller: 'ListController as ctrl'
+          controller: 'ListController as ctrl',
+          resolve:{
+            doctrosList : function(DoctorsServ){
+              return DoctorsServ.getAll().$loaded();
+            }
+          }
         }
       }
     })
