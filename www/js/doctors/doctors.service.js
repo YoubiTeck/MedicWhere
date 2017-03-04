@@ -10,7 +10,8 @@ angular.module('starter')
 				return doctorsArray;
 			},
 			getById: function(uid){
-				return doctorsArray.$getRecord(uid);
+				// console.log('getById: ',uid)
+				return $firebaseObject($firebaseRef.doctors.child(uid));
 			}
 		};
 }]);

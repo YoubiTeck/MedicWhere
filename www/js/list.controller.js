@@ -4,33 +4,25 @@ angular.module('starter')
 //** ___________________________ List ContRoller _____________________________________ **//
 //** _________________________________________________________________________________ **//
 
+.controller('DetailController', ['$scope','$http','$state','$ionicPopup','profile','comments','users',
+  function($scope,$http,$state,$ionicPopup,profile,comments,users){
+  	// console.log('profile: ',profile)
+  	// console.log('comments: ',comments)
+  	// console.log('users: ',users)
+  	
+  	$scope.profile = profile;
+  	$scope.comments = comments;
+  	$scope.users = users;
 
-.controller('ListController',['$scope','$http','$state','$ionicPopup','doctrosList',
-  function($scope,$http,$state,$ionicPopup,doctrosList){
-    $scope.chercher_input ="";
+  	$scope.getUser = function(uid){
+  		var user = $scope.users.$getRecord(uid);
+  		return user.pseudonym;
+  	}
 
-
-    $scope.filtrageList = [
-      'Tous',
-      'Hospital',
-      'Medecin Général',
-      'Medecin Spéciliste'
-    ];
-	$scope.filtrer_spec = 'Tous';
-
-	$scope.listDoctors = doctrosList;
-    
-    $http.get('js/data.json').success( function(data){
-
-	    $scope.artists = data.artists;
-
-	    $scope.wichartist = $state.params.aId;
-
-		//function that get the value from the range in list.html
-		$scope.drag = function(value){
-      		$scope.search_head_distance = value;
-        	// alert("value: "+$scope.rangeValue);
-    	};
+  	// for(var i =0;i< comments.length ; i++){
+  	// 	console.log(comments[i]);
+  	// 	$scope.getUser('userid1');²
+  	// }
 
 	    // set the rate and max variables
 	    $scope.rating = {};
@@ -285,64 +277,82 @@ angular.module('starter')
 		    });
 
 	    };
-	    
-	    $scope.rangeValue = 1;
-	    $scope.search_head_distance = $scope.rangeValue; //the label value 
-	    $scope.rangeMinInit = 1;//minimum value of range default
-	    $scope.rangeMaxInit = 10;//maximum value of range default
 
-			// show popup of maximum value 
-	    $scope.showPopup = function(rangeMaxInit){
-	      $scope.data = {};
-	      rangeMaxInit = $scope.rangeMaxInit;
-	      $ionicPopup.show({
-			/*template:'<input type="username">',*/
+}])
+.controller('ListController',['$scope','$http','$state','$ionicPopup','$stateParams','doctrosList',
+  function($scope,$http,$state,$ionicPopup,$stateParams,doctrosList){
+    $scope.chercher_input ="";
 
-	        title: '<b>غير مسافة البحث</b>',
-	        subTitle: 'المسافة القصوى : 50 كم',
-	        scope: $scope,
-	        
-	        buttons: [
-	          {
-	            text: '<b>-</b>',
-	            type:'button-assertive',
-	            onTap: function(e){
-	              // add your action
-	              if($scope.rangeMaxInit>10) {
-	                $scope.rangeMaxInit -=10;
-	                if($scope.search_head_distance > $scope.rangeMaxInit )
-	                {
-	                  $scope.search_head_distance = $scope.rangeMaxInit;
-	                }
-	                // $scope.drag; 
 
-	              }
-	            }
-	          },
-	          {
-	            text: '<b>'+rangeMaxInit+'</b>',
-	            type:'button-positive',
-	            onTap: function(e){
-	              // add your action
-	            }
-	          },
-	          {
-	            text: '<b>+</b>',
-	            type:'button-positive',
-	            onTap: function(e){
-	              // add your action
-	              if($scope.rangeMaxInit<50) 
-	              {
-	                $scope.rangeMaxInit +=10;
-	                // $scope.drag; 
-	              }
-	            }
-	          }
-	        ]
-	      });
-	    }
+    $scope.filtrageList = [
+      'Tous',
+      'Hospital',
+      'Medecin Général',
+      'Medecin Spéciliste'
+    ];
+    
+	$scope.filtrer_spec = 'Tous';
 
-    });//end success
+	$scope.listDoctors = doctrosList;
 
-  }])
-;
+	$scope.defaultPhoto = "docIcon.svg"
+
+	 
+   // range Value and distance configuration
+    
+    $scope.rangeValue = 1;
+    $scope.search_head_distance = $scope.rangeValue; //the label value 
+    $scope.rangeMinInit = 1;//minimum value of range default
+    $scope.rangeMaxInit = 10;//maximum value of range default
+
+		// show popup of maximum value 
+    $scope.showPopup = function(rangeMaxInit){
+      $scope.data = {};
+      rangeMaxInit = $scope.rangeMaxInit;
+      $ionicPopup.show({
+		/*template:'<input type="username">',*/
+
+        title: '<b>غير مسافة البحث</b>',
+        subTitle: 'المسافة القصوى : 50 كم',
+        scope: $scope,
+        
+        buttons: [
+          {
+            text: '<b>-</b>',
+            type:'button-assertive',
+            onTap: function(e){
+              // add your action
+              if($scope.rangeMaxInit>10) {
+                $scope.rangeMaxInit -=10;
+                if($scope.search_head_distance > $scope.rangeMaxInit )
+                {
+                  $scope.search_head_distance = $scope.rangeMaxInit;
+                }
+                // $scope.drag; 
+
+              }
+            }
+          },
+          {
+            text: '<b>'+rangeMaxInit+'</b>',
+            type:'button-positive',
+            onTap: function(e){
+              // add your action
+            }
+          },
+          {
+            text: '<b>+</b>',
+            type:'button-positive',
+            onTap: function(e){
+              // add your action
+              if($scope.rangeMaxInit<50) 
+              {
+                $scope.rangeMaxInit +=10;
+                // $scope.drag; 
+              }
+            }
+          }
+        ]
+      });
+    }
+  }]);

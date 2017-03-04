@@ -42,43 +42,41 @@
             <!-- la liste -->
             
             <ion-list show-reorder="data.showReorder" show-delete="data.showDeleted">
-
-        
+<!--         
                 <ion-item ng-repeat="doc in listDoctors" class="item-thnumbnail-left item-icon-right item-text-wrap">
                     <h3>First Name: {{doc.firstname}} </h3><br>
                     <h3>First Name: {{doc.lastname}} </h3><br>
                     <h3>Adress: {{doc.address}} </h3><br>
                     <h3>latitude: {{doc.latitude}} </h3><br>
                     <h3>Longitude: {{doc.longitude}} </h3><br>
-                    <h3>Speciality: {{doc.speciality}} </h3><br>
-                </ion-item>
-
-<!--                 <ion-item ng-class="'star' : item.star" ng-repeat='item in artists | filter: chercher_input' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{ item.shortname }}">
-                
-                    <img ng-src="img/{{ item.shortname }}_tn.jpg" alt="{{ item.name }} Photo">
-                    <h2>{{ item.name }}</h2> <div class="item_distance_div"> 1.5 km</div>
-                    <h3>{{ item.reknown }}</h3>
-                    <p>{{ item.bio |limitTo:150 }}
-                    
-                    {{item.bio.length > 100 ? '&hellip;':''}}
-                    </p>
-
-                    <button class="button button-clear icon ion-star button-assertive" ng-click="toggleStar(item)" ng-show="item.star">
-                    </button>
-
-                    <ion-option-button class="button-dark" ng-click="goToLocation(item)">
-                    <i class="icon ion-ios-location"></i>
-                    </ion-option-button>
-
-                    <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
-                    </ion-reorder-button>
-                   
-                    <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)">
-                    </ion-delete-button>
+                    <h3>Speciality: {{doc.spec}} </h3><br>
                 </ion-item> -->
 
-            </ion-list>
+                <ion-item ng-class="'star': item.star" ng-repeat='item in listDoctors | filter: chercher_input' class="item-thumbnail-left item-icon-right item-text-wrap" href="#/app/list/{{item.id}}">
+                                
+                    <img ng-src="img/{{  item.spec }}.svg" alt="{{ item.firstname }} Photo">
+                    <h2>{{ item.firstname+" "+item.lastname }}</h2> <div class="item_distance_div"> 1.5 km</div>
+                    <h3>{{ item.spec }}</h3>
+                    <h3>{{ item.address }}</h3>
+                    <p>{{ item.desc  |limitTo:150 }}
+                    
+                    {{item.desc.length > 100 ? '&hellip;':''}}
+                    </p>
 
-      
+<!--                     <button class="button button-clear icon ion-star button-assertive" ng-click="" ng-show="">
+                    </button> -->
+
+                    <ion-option-button class="button-dark" ng-click="goToLocation(item)">
+                        <i class="icon ion-ios-location"></i>
+                    </ion-option-button>
+
+<!--                <ion-reorder-button class="ion-navicon" on-reorder="moveItem(item, $fromIndex, $toIndex)">
+                    </ion-reorder-button> -->
+<!--                    
+                    <ion-delete-button class="ion-minus-circled" ng-click="deleteItem(item)">
+                    </ion-delete-button> -->
+                </ion-item> 
+
+            </ion-list>
         </ion-content>
  </ion-view>

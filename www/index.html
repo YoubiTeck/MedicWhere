@@ -9,6 +9,7 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/ionic-rating.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     
 	<!-- <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script> -->
 
@@ -30,6 +31,7 @@
     <ion-nav-bar class="bar-positive">
       <ion-nav-back-button></ion-nav-back-button>
     </ion-nav-bar>
+    
     <ion-nav-view></ion-nav-view>
 
 
@@ -43,6 +45,13 @@
     <script src="lib/firebase/firebase.js"></script>
     <script src="lib/angularfire/dist/angularfire.js"></script>
 
+    <!--stars rating module-->
+    <script src="js/rating.js"></script>
+
+    <!--avatar letter module-->
+    <script src="lib/ionic-letteravatar-master/ionic-letteravatar.js"></script>
+    <script src="lib/angular-md5/angular-md5.js"></script>
+
     <!-- your app's js -->    
     <script src="js/app.js"></script>  
     <script src="js/controllers.js"></script>
@@ -51,14 +60,13 @@
     <!-- DoctorsServ -->
     <script src="js/doctors/doctors.service.js"></script>
     <script src="js/list.controller.js"></script>
+    <!-- UsersServ -->
+    <script src="js/users/users.service.js"></script>
+    <!-- CommentsServ -->
+    <script src="js/comments/comments.service.js"></script>
+    <!-- HospitalsServ -->
+    <script src="js/hospitals/hospitals.service.js"></script>
 
 
-    <!--stars rating module-->
-    <script src="js/rating.js"></script>
-
-    <!--avatar letter module-->
-    <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>-->
-    <script src="lib/ionic-letteravatar-master/ionic-letteravatar.js"></script>
-    <script src="lib/angular-md5/angular-md5.js"></script>
   </body>
 </html>

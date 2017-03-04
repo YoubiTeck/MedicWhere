@@ -61,7 +61,8 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
   // config my references
   $firebaseRefProvider.registerUrl({
     default: config.databaseURL,
-    doctors: config.databaseURL + '/doctors'
+    doctors: config.databaseURL + '/doctors',
+    users: config.databaseURL + '/users'
   });
 
   $stateProvider
@@ -70,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
     abstract: true,
     templateUrl: 'templates/app.html',
     controller: 'AppCtrl'
-  })
+    })
     .state('app.home', {
       url: '/home',
       views: {
@@ -80,31 +81,6 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
         }
       }
     })
-     .state('app.start', {
-    url: '/start',
-    views: {
-      'menuContent2': {
-        templateUrl: 'templates/start.html'
-      }
-    }
-  })
-    .state('app.forgot', {
-    url: '/forgot',
-    views: {
-      'menuContent2': {
-        templateUrl: 'templates/forgot.html'
-      }
-    }
-  })
-    .state('app.login', {
-        url: '/login',
-        views: {
-          'menuContent2': {
-            templateUrl: 'templates/login.html',
-            controller : 'loginCtrl'
-          }
-        }
-      })
     .state('app.list',{
       url: '/list',
       views: {
@@ -119,6 +95,54 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
         }
       }
     })
+    .state('app.detail',{
+      url: '/list/:aId',
+      views: {
+        'list-tab' : {
+          templateUrl: 'templates/detail.html',
+          controller: 'DetailController as detailController'
+        }
+      },
+      resolve:{
+        profile: function( $stateParams, DoctorsServ){
+          // console.log('in porfile',$stateParams.aId);
+
+          return DoctorsServ.getById($stateParams.aId).$loaded();
+        },
+        comments: function(CommentsServ){
+          // console.log('in comments', $stateParams.aId);
+          return CommentsServ.$loaded();
+        },
+        users: function(UsersServ){
+          return UsersServ.getAll().$loaded();
+        }
+      }
+    })
+    .state('app.start', {
+    url: '/start',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/start.html'
+      }
+    }
+    })
+    .state('app.forgot', {
+    url: '/forgot',
+    views: {
+      'menuContent2': {
+        templateUrl: 'templates/forgot.html'
+      }
+    }
+    })
+    .state('app.login', {
+        url: '/login',
+        views: {
+          'menuContent2': {
+            templateUrl: 'templates/login.html',
+            controller : 'loginCtrl'
+          }
+        }
+      })    
     .state('app.search',{
       url:'/search',
       views : {
@@ -145,15 +169,6 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services', 'l
         'menuContent2':{
           templateUrl:'templates/signeup.html',
           controller: 'loginCtrl'
-        }
-      }
-    })
-    .state('app.detail',{
-      url: '/list/:aId',
-      views: {
-        'list-tab' : {
-          templateUrl: 'templates/detail.html',
-          controller: 'ListController'
         }
       }
     });
